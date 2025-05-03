@@ -20,9 +20,9 @@ const io = socketIO(server, {
 });
 var path = require('path');
 
-// Configurar el servidor para servir archivos estáticos desde el mismo directorio de este script
+// Configurar el servidor para servir archivos estáticos desde la carpeta public
 app.use(cors());
-app.use(express.static(path.join(__dirname, '/')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 const websocketport = 3000;

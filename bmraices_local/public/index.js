@@ -363,7 +363,11 @@ window.sketch = (p) => {
     console.log(pm.puntos)
     pm.trigger();
 
-    socket = io.connect(window.location.hostname + ":3000");
+    const socketUrl = window.location.hostname.includes('dattaweb.com') 
+      ? '/' // Production server
+      : window.location.hostname + ':3000'; // Local development
+    
+    socket = io.connect(socketUrl);
    
    socket.on('mouse',function newDrawing(data){
 		  console.log(data);
