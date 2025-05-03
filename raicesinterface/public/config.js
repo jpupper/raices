@@ -10,12 +10,12 @@ const isProduction = window.location.protocol === 'https:' ||
 const socketConfig = {
     // The URL to connect to for the interface socket (this app)
     interfaceUrl: isProduction 
-        ? '/raicesinterface'  // Production server path (handled by nginx)
+        ? 'https://vps-4455523-x.dattaweb.com/raicesinterface'  // Production server path
         : 'http://' + window.location.hostname + ':3400',  // Local development
     
     // The URL to connect to for the drawing app socket (raicesgen)
     drawingUrl: isProduction 
-        ? '/raicesgen'  // Production server path (handled by nginx)
+        ? 'https://vps-4455523-x.dattaweb.com/raicesgen'  // Production server path
         : 'http://' + window.location.hostname + ':3500',  // Local development
         
     // Additional socket options if needed

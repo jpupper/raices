@@ -21,23 +21,11 @@ function setup() {
 	createCanvas(windowWidth, windowHeight, WEBGL)
 	console.log("AAA");
 	
-	// For local development vs production
-	const isProduction = window.location.hostname.includes('dattaweb.com');
-	
-	// Socket for interface (this app)
-	const interfaceSocketUrl = isProduction
-		? '/raicesinterface' // Production server
-		: 'http://' + window.location.hostname + ':3400'; // Local development
-	
-	// Socket for drawing app
-	const drawingSocketUrl = isProduction
-		? '/' // Production server
-		: 'http://' + window.location.hostname + ':3500'; // Local development
-	
-	socket = io.connect(interfaceSocketUrl);
+	// Use the socket configuration from config.js
+	socket = getInterfaceSocket();
 	socket.on('mouse',newDrawing);
 	
-	socket2 = io.connect(drawingSocketUrl);
+	socket2 = getDrawingSocket();
 	socket2.on('mouse',newDrawing);
 
 	socket.on('particlesize',(data)=>{
