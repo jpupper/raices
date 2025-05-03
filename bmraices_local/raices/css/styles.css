@@ -1,0 +1,88 @@
+html, body {
+	width: 100%;
+	height: 100%;
+  	margin: 0px;
+  	padding: 0px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+}
+
+html {	
+	flex-direction: column;
+}
+
+body {
+	flex-direction: row;
+	overflow: hidden;
+    touch-action: none;
+	/*background: radial-gradient(#efefef, #000000);*/
+	background: black;
+}
+
+canvas {
+	margin: auto;
+	display: block;
+	height: auto;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+
+ /* Estilos específicos para los botones */
+ .btn-absolute {
+	position: absolute;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+    display:none;
+}
+
+.btn-absolute:hover {
+	background-color: #ddd;
+	color: black;
+}
+
+.btn1 {
+	top: 45%;
+	left: 2%;
+	background-color: black;
+    color: white;
+    border: 3px solid white;
+}
+
+.btn2 {
+	top: 50%;
+	left: 2%;
+	background-color: black;
+    color: white;
+    border: 3px solid white;
+}
+.btn3 {
+	top: 55%;
+	left: 2%;
+	background-color: black;
+    color: white;
+    border: 3px solid white;
+}
+.btn4 {
+	top: 60%;
+	left: 2%;
+	background-color: black;
+    color: white;
+    border: 3px solid white;
+}
+
+
+
+
