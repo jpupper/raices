@@ -1,0 +1,259 @@
+@font-face {
+	font-family: 'RobotoMonoBold';
+	src: url('../font/RobotoMono-Bold.ttf') format('truetype');
+	font-weight: bold;
+	font-style: normal;
+  }
+html, body {
+	width: 100%;
+	height: 100%;
+  	margin: 0px;
+  	padding: 0px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: 'RobotoMonoBold', sans-serif;
+
+}
+
+html {	
+	flex-direction: column;
+}
+
+body {
+	flex-direction: row;
+	overflow: hidden;
+    touch-action: none;
+	/*background: radial-gradient(#efefef, #000000);*/
+	background: black;
+
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	margin: 0;
+}
+
+canvas {
+	margin: auto;
+	display: block;
+	height: auto;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+#loading {
+	color: white;
+	font-size: 40px;
+	position: fixed;
+	top: 40%;
+	left: 50%;
+	white-space: nowrap;
+	/* bring your own prefixes */
+	transform: translate(-50%, -50%);
+}
+
+
+.container {
+	width: 80%;
+	max-width: 600px;
+  }
+  
+  .button-container {
+	margin-bottom: 5px;
+	box-sizing: border-box;
+	padding: 10px;
+	border: 2px solid #ffffff;
+	border-radius: 5px;
+	background-color: #000000;
+	color:white;
+	font-family: 'RobotoMonoBold', sans-serif;
+  }
+  .slider-container {
+	margin-bottom: 5px;
+	box-sizing: border-box;
+	padding: 5px;
+	/*border: 2px solid #ffffff;*/
+	border-radius: 5px;
+	background-color: #000000;
+	color:white;
+  }
+  
+  .label {
+	font-size: 1em;
+	margin-bottom: 5px;
+	display: inline-block;
+  }
+  
+  .slider, .dropdown {
+	width: 100%;
+	padding: 5px;
+	margin: 5px 0;
+	border-radius: 5px;
+	box-sizing: border-box;
+	
+  }
+  
+  .slider {
+	-webkit-appearance: none;
+	appearance: none;
+	height: 5px;
+	background: rgb(255, 0, 0);
+	outline: none;
+  }
+  
+  .slider::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 20px;
+	height: 20px;
+	background: rgb(0, 0, 0);
+
+	cursor: pointer;
+	border-radius: 50%;
+	border: 2px solid #ffffff;
+  }
+  
+  .slider::-moz-range-thumb {
+	width: 20px;
+	height: 20px;
+	background: #ecf0f1;
+	cursor: pointer;
+	border-radius: 50%;
+  }
+  
+  .dropdown {
+	background-color: #34495e;
+	color: #ecf0f1;
+	border: 1px solid #7f8c8d;
+	border-radius: 5px;
+	box-sizing: border-box;
+  }
+  
+  .value {
+	display: block;
+	text-align: center;
+	font-size: 1em;
+	margin-top: 5px;
+  }
+
+  canvas {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1; /* Bajo z-index para que esté detrás de la interfaz de usuario */
+  }
+  
+  .container {
+	position: relative;
+	z-index: 2; /* Alto z-index para que esté delante del canvas */
+  }
+
+  .textfield-container {
+    margin-bottom: 5px;
+    box-sizing: border-box;
+    padding: 10px;
+   /* border: 2px solid #ffffff;*/
+    border-radius: 5px;
+    background-color: #000000;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.textfield {
+    width: 100%;
+    padding: 5px;
+    margin: 5px 0;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: #34495e;
+    color: #ecf0f1;
+    border: 1px solid #7f8c8d;
+    outline: none;
+}
+
+.textfield::placeholder {
+    color: #ecf0f1;
+    opacity: 0.7; /* Hacer el texto del placeholder un poco más claro */
+}
+.jpbutton {
+	padding: 5px 10px;
+	font-size: 1em;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s, transform 0.1s;
+	background-color: #000000;
+	border: 2px solid #ffffff;
+	color: white;
+	position: fixed;
+	top:1%;
+	left:1%;
+	font-family: 'RobotoMonoBold', sans-serif;
+  }
+  
+#jpclean{
+	padding: 5px 10px;
+	font-size: 1em;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s, transform 0.1s;
+	background-color: #000000;
+	border: 2px solid #ffffff;
+	color: white;
+	position: fixed;
+	top:8%;
+	left:1%;
+}
+#jpgenerate{
+	padding: 5px 10px;
+	font-size: 1em;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s, transform 0.1s;
+	background-color: #000000;
+	border: 2px solid #ffffff;
+	color: white;
+	position: fixed;
+	top:15%;
+	left:1%;
+	font-family: 'RobotoMonoBold', sans-serif;
+}
+#jpinfo{
+	padding: 5px 10px;
+	font-size: 1em;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s, transform 0.1s;
+	background-color: #000000;
+	border: 2px solid #ffffff;
+	color: white;
+	position: fixed;
+	top:25%;
+	left:1%;
+	font-family: 'RobotoMonoBold', sans-serif;
+}
+#jpinterface {
+	width:100%;
+	padding:50px;
+}
+
+#information{
+	display: none;
+	width: 100%;
+	padding: 50px;
+	background-color: rgba(0, 0, 0, 0.5);
+	color: white;
+}

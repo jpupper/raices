@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>JPupper mega soft</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link type="text/css" rel="stylesheet" href="css/style.css" />
+	
+	<script  type="text/javascript"  src="js/osc.js"></script>
+	<script type="text/javascript" src="js/socket.js"></script>
+    <script type="text/javascript" src="js/p5.min.js"></script>
+
+    
+</head>
+
+<body>
+    <script type="text/javascript" src="script.js"></script>
+	
+	<div class="container">
+		<button type="button" id="jpopen" class = "jpbutton">Close</button>
+		<button type="button" id="jpclean" class = "jpbutton ">Clean</button>
+		<button type="button" id="jpgenerate" class = "jpgenerate ">Rand</button>
+		<button type="button" id="jpinfo" class = "jpbutton ">Info</button>
+		<div id="jpinterface">
+
+			<!--<div class="textfield-container">
+				<label for="exampleText" class="label">Port:</label>
+				<input type="text" id="exampleText" class="textfield">
+			</div>-->
+
+			<div class="slider-container">
+				<label for="particleSize" class="label">Particle Size:</label>
+				<input type="range" id="particleSize" class="slider">
+			</div>
+			<div class="slider-container">
+				<label for="life" class="label">Life:</label>
+				<input type="range" id="life" class="slider">
+			</div>
+			<div class="slider-container">
+				<label for="particleamount" class="label">Particle Amount:</label>
+				<input type="range" id="particleamount" class="slider">
+			</div>
+			<div class="slider-container">
+				<label for="brush" class="label">Brush:</label>
+				<select id="brush" class="dropdown">
+					<option value="Clasic Ellipse">Clasic Ellipse</option>
+					<option value="3D Root">3D Root</option>
+					<option value="Tentacles">Tentacles</option>
+				</select>
+			</div>
+			<div class="slider-container">
+				<label for="palette" class="label">Palette:</label>
+				<select id="palette" class="dropdown">
+					<option value="Blue Sunrise">Blue Sunrise</option>
+					<option value="Autumn Sky">Autumn Sky</option>
+					<option value="Lavender Sun">Lavender Sun</option>
+					<option value="Ocean Daylight">Ocean Daylight</option>
+					<option value="Rose Lagoon">Rose Lagoon</option>
+					<option value="Golden Dusk">Golden Dusk</option>
+					<option value="Skyline Yellow">Skyline Yellow</option>
+					<option value="Cocoa Cream">Cocoa Cream</option>
+					<option value="Mystic Violet">Mystic Violet</option>
+					<option value="Blueberry Pie">Blueberry Pie</option>
+					<option value="Emerald Fire">Emerald Fire</option>
+					<option value="Orchid Dream">Orchid Dream</option>
+					<option value="Peach Blossom">Peach Blossom</option>
+					<option value="Cherry Night">Cherry Night</option>
+					<option value="Mint Caramel">Mint Caramel</option>
+					<option value="Galaxy Gold">Galaxy Gold</option>
+					<option value="Lilac Dawn">Lilac Dawn</option>
+					<option value="Violet Candy">Violet Candy</option>
+					<option value="Aqua Wood">Aqua Wood</option>
+					<option value="Berry Twilight">Berry Twilight</option>
+					<option value="Minty Magenta">Minty Magenta</option>
+					<option value="Crimson Cloud">Crimson Cloud</option>
+					<option value="Copper Sky">Copper Sky</option>
+					<option value="Forest Whisper">Forest Whisper</option>
+					<option value="Starry Clash">Starry Clash</option>
+					<option value="Meadow Honey">Meadow Honey</option>
+					<option value="Nightshade Blue">Nightshade Blue</option>
+					<option value="Emerald Night">Emerald Night</option>
+					<option value="Royal Blend">Royal Blend</option>
+					<option value="Sunset Dream">Sunset Dream</option>
+					<option value="Berry Wine">Berry Wine</option>
+					<option value="Mocha Blend">Mocha Blend</option>
+					<option value="Blazing Inferno">Blazing Inferno</option>
+					<option value="Golden Majesty">Golden Majesty</option>
+					<option value="Frozen Tundra">Frozen Tundra</option>
+					<option value="Emerald Enigma">Emerald Enigma</option>
+					<option value="Desert Rose">Desert Rose</option>
+				</select>
+			</div>
+			<div class="slider-container">
+				<label for="mouseforce" class="label">Mouse Force:</label>
+				<input type="range" id="mouseforce" class="slider">
+			</div>
+			<div class="slider-container">
+				<label for="noiseforce" class="label">Noise Force:</label>
+				<input type="range" id="noiseforce" class="slider">
+			</div>
+			<div class="slider-container">
+				<label for="feedbackforce" class="label">Feedback Force:</label>
+				<input type="range" id="feedbackforce" class="slider">
+			</div>
+			<div class="slider-container">
+				<label for="Vignette" class="label">Vignette:</label>
+				<input type="range" id="vignette" class="slider">
+			</div>
+		</div>
+
+		<div id="information">
+			<h1>RAICES </h1>
+			<p> Liveminting de la obra RAICES, pensada en colaboración con varios equipos maravillosos de personas </p></br>
+			<p>Agradecimientos :</p>
+				<ul>
+					<li>A bright moments por la organización de esta fantastica fecha y festival.</li>
+					<li>A FXHASH por desarrollar el genial sitio donde se pueden mintear NFTS parametrizados </li>
+					<li>A DUNEPARK por la amabilidad y la predisposición para la coordinación del evento</li>
+					<li>A Jeyder y Qualia.AV por la inspiración, la amabilidad y la coordinación tecnica y artistica de la interacción</li>
+				</ul>
+			
+
+		</div>
+	  </div>
+</body>
+
+</html>

@@ -1,0 +1,13 @@
+
+PAMILO GENERATOR®
+
+
+PAMILO GENERATOR®
+
+If you have two names : Bubba and Kiki and two shapes : spike and round. Wich shapes is bubba? and wich shape is Kiki?
+
+This artwork is fully generative, there is not a single png, image, or assets, just P5js and 2 image processing shaders.
+
+Is inspired in the drawings of PAMILO CEIRONE® @nefetesudaca, he has an amazing style completly unique and here is my atemp to try to catch his style using the color palette and the shapes.
+
+Thanks to @cyberhens for introducing me to the amazing artist that is Pamilo, and thanks to the amazing GNFTs community, the largest hiberoamerican generative nft community.
