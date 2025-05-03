@@ -26,13 +26,13 @@ function setup() {
 	
 	// Socket for interface (this app)
 	const interfaceSocketUrl = isProduction
-		? '/interface' // Production server
+		? '/raicesinterface' // Production server
 		: 'http://' + window.location.hostname + ':3400'; // Local development
 	
 	// Socket for drawing app
 	const drawingSocketUrl = isProduction
 		? '/' // Production server
-		: 'http://' + window.location.hostname + ':3000'; // Local development
+		: 'http://' + window.location.hostname + ':3500'; // Local development
 	
 	socket = io.connect(interfaceSocketUrl);
 	socket.on('mouse',newDrawing);
