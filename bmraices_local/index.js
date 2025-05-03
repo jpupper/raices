@@ -363,7 +363,7 @@ window.sketch = (p) => {
     console.log(pm.puntos)
     pm.trigger();
 
-    socket = io.connect("192.168.0.4:3000");
+    socket = io.connect(window.location.hostname + ":3000");
    
    socket.on('mouse',function newDrawing(data){
 		  console.log(data);

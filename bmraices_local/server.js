@@ -11,7 +11,9 @@ const io = socketIO(server, {
     origin: ["http://192.168.0.4:3400",
              "http://localhost:3400",
              "http://localhost:3000",
-             "http://192.168.0.4:3000"],  // El origen de tu aplicación cliente
+             "http://192.168.0.4:3000",
+             "http://127.0.0.1:3400",
+             "http://127.0.0.1:3000"],  // El origen de tu aplicación cliente
     methods: ["GET", "POST"],         // Métodos permitidos
     credentials: true                 // Permitir el envío de credenciales
   }
@@ -27,7 +29,7 @@ const websocketport = 3000;
 const oscport = 6061
 
 
-server.listen(websocketport, function() {
+server.listen(websocketport, '0.0.0.0', function() {
     console.log('Listening on port '+ websocketport);
 });
 
