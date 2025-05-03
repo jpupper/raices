@@ -370,7 +370,7 @@ window.sketch = (p) => {
     
     const socketUrl = isProduction
       ? '/raices' // Production server path
-      : window.location.hostname + ':3000'; // Local development
+      : window.location.hostname + ':3500'; // Local development
     
     socket = io.connect(socketUrl);
    

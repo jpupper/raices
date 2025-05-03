@@ -33,7 +33,7 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-const websocketport = 3000;
+const websocketport = 3500;
 const oscport = 6061
 
 
