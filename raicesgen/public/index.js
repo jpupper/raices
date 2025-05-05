@@ -3,6 +3,7 @@ import { ParticleSystem } from './js/particlesystem.js'
 import { FlowField } from './js/flowfield.js'
 import { ShaderManager} from './js/rendermanager.js'
 import { PointManager} from './js/secuenciapuntos.js'
+
 // demonstrate seed reset
 // for (let i = 0; i < 10; i++) {
 //   console.log(i, $fx.rand(), $fx.randminter())
@@ -363,18 +364,22 @@ window.sketch = (p) => {
     console.log(pm.puntos)
     pm.trigger();
 
-    // For local development vs production
-    const isProduction = window.location.protocol === 'https:' || 
-                         window.location.hostname.includes('jeyder.com.ar') ||
-                         window.location.hostname.includes('dattaweb.com');
-    
-    const socketUrl = isProduction
-      ? '/raices' // Production server path
-      : window.location.hostname + ':3500'; // Local development
-    
-    socket = io.connect(socketUrl);
+    // Usar la función de config.js para obtener el socket
+    //socket = getRaicesgenSocket();
    
-   socket.on('mouse',function newDrawing(data){
+    socket = io('https://vps-4455523-x.dattaweb.com', {
+      path: '/raicesgen/socket.io'  // Exactamente como fifuli usa /fifuli/socket.io
+    });
+    
+
+
+    socket.on('connect', () => {
+      console.log('Conectado al servidor:', socket.id);
+    });
+    socket.on('connect_error', (error) => {
+      console.error('Error de conexión:', error);
+    });
+    socket.on('mouse',function newDrawing(data){
 		  console.log(data);
 		  ps.addParticle(p.map(data.x,0,1,0,p.width), p.map(data.y,0,1,0,p.height));
 		  fill(255,0,0);

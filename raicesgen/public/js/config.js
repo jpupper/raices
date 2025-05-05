@@ -1,4 +1,4 @@
-// Socket Configuration for Raices Interface
+// Socket Configuration for Raices Gen
 // This file handles the socket connection configuration
 
 // Determine if we're in production or development environment
@@ -8,15 +8,15 @@ const isProduction = window.location.protocol === 'https:' ||
 
 // Configure socket URLs based on environment
 const socketConfig = {
-    // The URL to connect to for the interface socket (this app)
+    // The URL to connect to for the raicesgen socket (this app)
+    raicesgenUrl: isProduction 
+        ? 'https://vps-4455523-x.dattaweb.com/raicesgen'  // Production server path
+        : 'http://' + window.location.hostname + ':3500',  // Local development
+    
+    // The URL to connect to for the interface app socket (raicesinterface)
     interfaceUrl: isProduction 
         ? 'https://vps-4455523-x.dattaweb.com/raicesinterface'  // Production server path
         : 'http://' + window.location.hostname + ':3400',  // Local development
-    
-    // The URL to connect to for the drawing app socket (raicesgen)
-    drawingUrl: isProduction 
-        ? 'https://vps-4455523-x.dattaweb.com/raicesgen'  // Production server path
-        : 'http://' + window.location.hostname + ':3500',  // Local development
         
     // Additional socket options if needed
     options: {
@@ -26,18 +26,18 @@ const socketConfig = {
     }
 };
 
+// Function to get a raicesgen socket connection
+function getRaicesgenSocket() {
+    return io.connect(socketConfig.raicesgenUrl, socketConfig.options);
+}
+
 // Function to get an interface socket connection
 function getInterfaceSocket() {
     return io.connect(socketConfig.interfaceUrl, socketConfig.options);
 }
 
-// Function to get a drawing socket connection
-function getDrawingSocket() {
-    return io.connect(socketConfig.drawingUrl, socketConfig.options);
-}
-
 // Export the configuration and connection functions
 // Since we're using native JS without modules, we expose them to the window object
 window.socketConfig = socketConfig;
+window.getRaicesgenSocket = getRaicesgenSocket;
 window.getInterfaceSocket = getInterfaceSocket;
-window.getDrawingSocket = getDrawingSocket;

@@ -21,13 +21,25 @@ function setup() {
 	createCanvas(windowWidth, windowHeight, WEBGL)
 	console.log("AAA");
 	
-	// Use the socket configuration from config.js
-	socket = getInterfaceSocket();
-	socket.on('mouse',newDrawing);
+	// Usar exactamente la misma estructura que funciona para fifuli
+	socket = io('https://vps-4455523-x.dattaweb.com', {
+		path: '/raicesinterface/socket.io'  // Exactamente como fifuli usa /fifuli/socket.io
+	});
 	
-	socket2 = getDrawingSocket();
-	socket2.on('mouse',newDrawing);
+	// Desactivar temporalmente la segunda conexión para aislar el problema
+	// socket2 = io('https://vps-4455523-x.dattaweb.com', {
+	//     path: '/raicesgen/socket.io'
+	// });
 
+	socket.on('mouse',newDrawing);
+	// socket2.on('mouse',newDrawing);
+
+	socket.on('connect', () => {
+		console.log('Conectado al servidor:', socket.id);
+	});
+	socket.on('connect_error', (error) => {
+		console.error('Error de conexión:', error);
+	});
 	socket.on('particlesize',(data)=>{
 		console.log("particlesize"+data);
 		document.getElementById('particleSize').value = data;
@@ -158,11 +170,11 @@ function mouseDragged() {
 					y:map(mouseY,0,height,0,1)
 				}
 		socket.emit("mouse",data);
-		socket2.emit("mouse",data);
+		//socket2.emit("mouse",data);
 		fill(255,255);
 		ellipse(mouseX,mouseY,30,30);
 		socket.emit("lala",10);
-		socket2.emit("lala",10);
+		//socket2.emit("lala",10);
 	}
 }
 function sendPointerData(){
@@ -208,7 +220,7 @@ function draw() {
 }
 function emitSockets(_key,_val){
 	socket.emit(_key,_val);
-	socket2.emit(_key,_val);
+	//socket2.emit(_key,_val);
 }
 document.addEventListener("DOMContentLoaded", function() {
 	var btn1 = document.getElementById('jpopen');
