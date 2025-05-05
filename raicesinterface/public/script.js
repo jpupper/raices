@@ -211,20 +211,39 @@ function draw() {
 	rect(0,0,width,height);
 
 	if(!drawactive && !isInfo){
-		image(fondo,0,0,1920,1080)
+		// Calculate the scaling factors for width and height
+		let scaleX = width / 1920;
+		let scaleY = height / 1080;
+		
+		// Use the larger scaling factor to ensure the image covers the entire screen
+		let scale = Math.max(scaleX, scaleY);
+		
+		// Calculate the new dimensions
+		let newWidth = 1920 * scale;
+		let newHeight = 1080 * scale;
+		
+		// Calculate position to center the image
+		let xPos = (width - newWidth) / 2;
+		let yPos = (height - newHeight) / 2;
+		
+		// Draw the background image with the new dimensions
+		image(fondo, xPos, yPos, newWidth, newHeight);
 	}
-
 
 	if(isInfo){
 		background(0);
-		ps.display();
-		ps.update();
+		//ps.display();
+		//ps.update();
 	}
 }
 function emitSockets(_key,_val){
 	socket.emit(_key,_val);
 	socket2.emit(_key,_val);
 }
+function windowResized() {
+	resizeCanvas(windowWidth, windowHeight);
+	console.log("Canvas resized to: " + windowWidth + "x" + windowHeight);
+  }
 document.addEventListener("DOMContentLoaded", function() {
 	var btn1 = document.getElementById('jpopen');
 	var btn_info = document.getElementById('jpinfo');
