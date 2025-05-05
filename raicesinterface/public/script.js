@@ -9,9 +9,16 @@ let isInfo = false;
 let ps;
 let imgs = []
 
+// Función para determinar si estamos en local o en el VPS
+function isLocalhost() {
+  return window.location.hostname === 'localhost' || 
+         window.location.hostname === '127.0.0.1' || 
+         window.location.hostname === '';
+}
+
 function preload(){
 	for(let i=0; i<5; i++){
-		imgs[i] = loadImage("img/logo"+(i+1)+"_r.png");
+		//imgs[i] = loadImage("img/logo"+(i+1)+"_r.png");
 	}
 	//imgs[i]
 }
@@ -21,18 +28,20 @@ function setup() {
 	createCanvas(windowWidth, windowHeight, WEBGL)
 	console.log("AAA");
 	
-	// Usar exactamente la misma estructura que funciona para fifuli
-	socket = io('https://vps-4455523-x.dattaweb.com', {
-		path: '/raicesinterface/socket.io'  // Exactamente como fifuli usa /fifuli/socket.io
-	});
+	// Configurar sockets según el entorno (local o VPS)
+	if(isLocalhost()){
+		socket = io('http://localhost:3400/socket.io');
 
-	socket2 = io('https://vps-4455523-x.dattaweb.com', {
-		path: '/raicesgen/socket.io'  // Exactamente como fifuli usa /fifuli/socket.io
-	  });
-	// Desactivar temporalmente la segunda conexión para aislar el problema
-	// socket2 = io('https://vps-4455523-x.dattaweb.com', {
-	//     path: '/raicesgen/socket.io'
-	// });
+		socket2 = io('http://localhost:3500/socket.io');
+	} else {
+		socket = io('https://vps-4455523-x.dattaweb.com', {
+			path: '/raicesinterface/socket.io'
+		});
+
+		socket2 = io('https://vps-4455523-x.dattaweb.com', {
+			path: '/raicesgen/socket.io'
+		});
+	}
 
 	socket.on('mouse',newDrawing);
 	socket2.on('mouse',newDrawing);

@@ -13,17 +13,25 @@ import { PointManager} from './js/secuenciapuntos.js'
 const sp = new URLSearchParams(window.location.search)
 var socket;
 
+// Función para determinar si estamos en local o en el VPS
+function isLocalhost() {
+  return window.location.hostname === 'localhost' || 
+         window.location.hostname === '127.0.0.1' || 
+         window.location.hostname === '';
+}
+
 export function genR(min, max) {
 	let result = 0;
 	if (!max) { result = $fx.rand() * (min - 0) + 0; } else { result = $fx.rand() * (max - min) + min; }
 	return result;
 }
 
+
 //Variables globales ?! Esto no se que onda pero despues lo transformo en otra cosa. 
 //0 = Modo Mint //Acá lo de ponerle los puntos y eso.
 //1 = Modo Freestyle.
 var Gmodomint = 1; 
-
+var autoclean  = true;
 $fx.params([
   {
     id: "maxsize",
@@ -185,90 +193,14 @@ $fx.params([
 
 ])
 
-// this is how features can be defined
-/*$fx.features({
-  "A random feature": Math.floor($fx.rand() * 10),
-  "A random boolean": $fx.rand() > 0.5,
-  "A random string": ["A", "B", "C", "D"].at(Math.floor($fx.rand() * 4)),
-  "Feature from params, its a number": $fx.getParam("number_id"),
-})*/
-
 function main() {
-  // log the parameters, for debugging purposes, artists won't have to do that
-  // console.log("Current param values:");
-  // // Raw deserialize param values
-  // console.log($fx.getRawParams());
-  // // Added addtional transformation to the parameter for easier usage
-  // // e.g. color.hex.rgba, color.obj.rgba.r, color.arr.rgb[0]
-  // console.log($fx.getParams());
-
-  // // how to read a single raw parameter
-  // console.log("Single raw value:");
-  // console.log($fx.getRawParam("color_id"));
-  // // how to read a single transformed parameter
-  // console.log("Single transformed value:");
-  // console.log($fx.getParam("color_id"));
-
- /* const getContrastTextColor = backgroundColor =>
-    ((parseInt(backgroundColor, 16) >> 16) & 0xff) > 0xaa
-      ? "#000000"
-      : "#ffffff"
-
-  const bgcolor = $fx.getParam("color_id").hex.rgba
-  const textcolor = getContrastTextColor(bgcolor.replace("#", ""))
-
-  // update the document based on the parameters
-  document.body.style.background = bgcolor
-  document.body.innerHTML = `
-  <div style="color: ${textcolor};">
-    <p>
-    hash: ${$fx.hash}
-    </p>
-    <p>
-    minter: ${$fx.minter}
-    </p>
-    <p>
-    iteration: ${$fx.iteration}
-    </p>
-    <p>
-    inputBytes: ${$fx.inputBytes}
-    </p>
-    <p>
-    context: ${$fx.context}
-    </p>
-    <p>
-    params:
-    </p>
-    <pre>
-    ${$fx.stringifyParams($fx.getRawParams())}
-    </pre>
-  <div>
-  `
-  const btn = document.createElement("button")
-  btn.textContent = "emit random params"
-  btn.addEventListener("click", () => {
-    $fx.emit("params:update", {
-      number_id: $fx.getRandomParam("number_id"),
-      bigint_id: $fx.getRandomParam("bigint_id"),
-      string_id_long: $fx.getRandomParam("string_id_long"),
-      select_id: $fx.getRandomParam("select_id"),
-      color_id: $fx.getRandomParam("color_id"),
-      boolean_id: $fx.getRandomParam("boolean_id"),
-      string_id: $fx.getRandomParam("string_id"),
-    })
-    main()
-  })
-  document.body.appendChild(btn)*/
+ 
 }
 main()
 
 $fx.on(
   "params:update",
   newRawValues => {
-    // opt-out default behaviour
-    //if (newRawValues.number_id === 5) return false
-    // opt-in default behaviour
-    //return true
 
     sketchInstance.updateParamsFromFxParams();
     
@@ -367,11 +299,16 @@ window.sketch = (p) => {
     // Usar la función de config.js para obtener el socket
     //socket = getRaicesgenSocket();
    
-    socket = io('https://vps-4455523-x.dattaweb.com', {
-      path: '/raicesgen/socket.io'  // Exactamente como fifuli usa /fifuli/socket.io
-    });
+    if(isLocalhost()){
+      socket = io('http://localhost:3000', {
+        path: '/raicesgen/socket.io'  // Exactamente como fifuli usa /fifuli/socket.io
+      });
+    }else{
+      socket = io('https://vps-4455523-x.dattaweb.com', {
+        path: '/raicesgen/socket.io'  // Exactamente como fifuli usa /fifuli/socket.io
+      });
+    }
     
-
 
     socket.on('connect', () => {
       console.log('Conectado al servidor:', socket.id);
@@ -469,13 +406,22 @@ window.sketch = (p) => {
 		
 	}
   p.draw = () => {
-   
+    
+
+
+    if(autoclean){
+      pgparticles.fill(0,10);
+      pgparticles.rect(0,0,p.windowWidth,p.windowHeight);
+    }
+
     p.update();
     p.updateShader();
     p.translate(-p.windowWidth /2,-p.windowHeight/2)
     ps.display(pgparticles);
     p.image(pgshader1,0,0,p.windowWidth,p.windowHeight);
     p.fill(255);
+
+
     if(isDebug){
       let sepy = 50;
       let posx = 30;
